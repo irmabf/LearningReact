@@ -16,7 +16,7 @@
 # Run Babel
 
 ## Run Babel for the Indecision App
-  npm run babel
+  npm run app
 
 ## Run babel for playground files
 
@@ -26,5 +26,7 @@
   npm run visible
 ### Es6-classes01.js playground file
  npm run classes-es6
+ ### Indecision-App playground file
+ npm run jsx-indecision
 
 

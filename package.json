@@ -13,6 +13,7 @@
     "app": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "counter": "babel src/playground/counter.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "visible": "babel src/playground/buid-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "es6-classes": "babel src/playground/es6-classes01.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    "es6-classes": "babel src/playground/es6-classes01.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "jsx-indecision": "babel src/playground/jsx-indecision.js --out-file=public/scripts/app.js --presets=env,react --watch"
   }
 }
