@@ -35,7 +35,7 @@ class Action extends React.Component {
     return (
       /*We DONT call handlePick, we reference it is called when the user pushes the button */
       <div>
-      <button onClick={this.handlePick}>What should I do?</button>
+      <button onClick={ this.handlePick }>What should I do?</button>
       </div>
     );
   }
