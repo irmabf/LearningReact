@@ -27,19 +27,34 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+  //This is a self contained method
+  handlePick() {
+    alert('HandlePick');
+  }
   render(){
     return (
+      /*We DONT call handlePick, we reference it is called when the user pushes the button */
       <div>
-        <button>What should I do?</button>
+      <button onClick={this.handlePick}>What should I do?</button>
       </div>
     );
   }
 }
 
 class Options extends React.Component {
+  //Method binding
+  constructor(props){
+    super(props);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
+  handleRemoveAll(){
+    console.log(this.props.options);
+  }
   render(){
     return (
       <div>
+
+      <button onClick={this.handleRemoveAll}>Remove All</button>
         {
           /*this.props.options.map( option => <p key={option}>{ option }</p> )*/
           this.props.options.map( option => <Option key={option} optionText={option} />)
@@ -62,10 +77,21 @@ class Option extends React.Component {
 }
 
 class AddOptions extends React.Component {
+  onHandleAddOption(e) {
+    e.preventDefault();
+    const option = e.target.elements.option.value.trim();
+    if (option) {
+      alert(option);
+    }
+    return;
+  }
   render(){
     return (
       <div>
-        AddOptions component here
+       <form onSubmit={ this.onHandleAddOption }>
+        <input type="text" name="option"/>
+        <button>Add Option</button>
+       </form>
       </div>
     )
   }

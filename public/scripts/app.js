@@ -80,15 +80,25 @@ var Action = function (_React$Component3) {
   }
 
   _createClass(Action, [{
+    key: 'handlePick',
+
+    //This is a self contained method
+    value: function handlePick() {
+      alert('HandlePick');
+    }
+  }, {
     key: 'render',
     value: function render() {
-      return React.createElement(
-        'div',
-        null,
+      return (
+        /*We DONT call handlePick, we reference it is called when the user pushes the button */
         React.createElement(
-          'button',
+          'div',
           null,
-          'What should I do?'
+          React.createElement(
+            'button',
+            { onClick: this.handlePick },
+            'What should I do?'
+          )
         )
       );
     }
@@ -100,18 +110,32 @@ var Action = function (_React$Component3) {
 var Options = function (_React$Component4) {
   _inherits(Options, _React$Component4);
 
-  function Options() {
+  //Method binding
+  function Options(props) {
     _classCallCheck(this, Options);
 
-    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+    _this4.handleRemoveAll = _this4.handleRemoveAll.bind(_this4);
+    return _this4;
   }
 
   _createClass(Options, [{
+    key: 'handleRemoveAll',
+    value: function handleRemoveAll() {
+      console.log(this.props.options);
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
+        React.createElement(
+          'button',
+          { onClick: this.handleRemoveAll },
+          'Remove All'
+        ),
 
         /*this.props.options.map( option => <p key={option}>{ option }</p> )*/
         this.props.options.map(function (option) {
@@ -158,12 +182,31 @@ var AddOptions = function (_React$Component6) {
   }
 
   _createClass(AddOptions, [{
+    key: 'onHandleAddOption',
+    value: function onHandleAddOption(e) {
+      e.preventDefault();
+      var option = e.target.elements.option.value.trim();
+      if (option) {
+        alert(option);
+      }
+      return;
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
-        'AddOptions component here'
+        React.createElement(
+          'form',
+          { onSubmit: this.onHandleAddOption },
+          React.createElement('input', { type: 'text', name: 'option' }),
+          React.createElement(
+            'button',
+            null,
+            'Add Option'
+          )
+        )
       );
     }
   }]);
