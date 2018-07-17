@@ -11,19 +11,35 @@ class IndecisionApp extends React.Component {
   }
   //Lifecycle methods only exist in class based components,
   //we CAN'T use them in statless functional components
-  componentDidMount(){
-    console.log('Fetching Data');
-  }
-  //ComponentDidUpdate fires after the components updates, meaning it fires:
-  //After the state value changes
-  //or
-  // After the props value changes
 
-  // componentDidUpdate(){
-  //   console.log('component did update');
-  // }
+  //2. - Read the data in localStorage in and use this.setState
+  //to set the the state base of whatever data is setting inside of localstorage
+
+  componentDidMount(){
+    try {
+          //2.1 - Read the data from localStorage
+      const json = localStorage.getItem('options');
+      //2.2 Get a real JAVASCRIPT ARRAY BACK
+      const options = JSON.parse(json);
+      //2.3 Use this.setState to set the state to options
+      //Return an object that updates options to the options array just parsed
+      if (options) {
+        //this.setState(  () => ({  options: options  }));
+        this.setState(  () => ({ options }));
+      }
+    }catch (error){
+     //Do nothing at all
+    }
+
+  }
   componentDidUpdate(prevProps, prevState){
-    console.log('Saving Data');
+    //1 - Save the data into local storage when the component updates (changes).
+    if (prevState.options.length != this.state.options.length) {
+      //1.1 - Convert our options OBJECT to a STRING REPRESENTATION,
+      const json = JSON.stringify(this.state.options);
+      //1.2 - Store the string representation that we just obtained to localStorage
+      localStorage.setItem('options', json);
+    }
   }
   //Fires when a component goes away
   componentWillUnmount(){
@@ -112,6 +128,7 @@ const Options = (props) => {
   return (
     <div>
       <button onClick={ props.handleDeleteOptions }>Remove All</button>
+      { props.options.length === 0 && <p>Please add an option to get started.</p>}
         {
           props.options.map( option => (
             <Option
@@ -154,7 +171,10 @@ class AddOptions extends React.Component {
     const error = this.props.handleAddOption(option);
 
     this.setState( () => ({  error  }));
-    e.target.elements.option.value = '';
+    if (!error) {
+      e.target.elements.option.value = '';
+    }
+
   }
   render(){
     return (

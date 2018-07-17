@@ -28,25 +28,39 @@ var IndecisionApp = function (_React$Component) {
   //Lifecycle methods only exist in class based components,
   //we CAN'T use them in statless functional components
 
+  //2. - Read the data in localStorage in and use this.setState
+  //to set the the state base of whatever data is setting inside of localstorage
 
   _createClass(IndecisionApp, [{
     key: 'componentDidMount',
     value: function componentDidMount() {
-      console.log('Fetching Data');
+      try {
+        //2.1 - Read the data from localStorage
+        var json = localStorage.getItem('options');
+        //2.2 Get a real JAVASCRIPT ARRAY BACK
+        var options = JSON.parse(json);
+        //2.3 Use this.setState to set the state to options
+        //Return an object that updates options to the options array just parsed
+        if (options) {
+          //this.setState(  () => ({  options: options  }));
+          this.setState(function () {
+            return { options: options };
+          });
+        }
+      } catch (error) {
+        //Do nothing at all
+      }
     }
-    //ComponentDidUpdate fires after the components updates, meaning it fires:
-    //After the state value changes
-    //or
-    // After the props value changes
-
-    // componentDidUpdate(){
-    //   console.log('component did update');
-    // }
-
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
-      console.log('Saving Data');
+      //1 - Save the data into local storage when the component updates (changes).
+      if (prevState.options.length != this.state.options.length) {
+        //1.1 - Convert our options OBJECT to a STRING REPRESENTATION,
+        var json = JSON.stringify(this.state.options);
+        //1.2 - Store the string representation that we just obtained to localStorage
+        localStorage.setItem('options', json);
+      }
     }
     //Fires when a component goes away
 
@@ -172,6 +186,11 @@ var Options = function Options(props) {
       { onClick: props.handleDeleteOptions },
       'Remove All'
     ),
+    props.options.length === 0 && React.createElement(
+      'p',
+      null,
+      'Please add an option to get started.'
+    ),
     props.options.map(function (option) {
       return React.createElement(Option, {
         key: option,
@@ -224,7 +243,9 @@ var AddOptions = function (_React$Component2) {
       this.setState(function () {
         return { error: error };
       });
-      e.target.elements.option.value = '';
+      if (!error) {
+        e.target.elements.option.value = '';
+      }
     }
   }, {
     key: 'render',
