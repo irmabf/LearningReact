@@ -6,7 +6,7 @@ class IndecisionApp extends React.Component {
     this.handlePick = this.handlePick.bind(this);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.state = {
-      options: props.options
+      options: []
     };
   }
   //Lifecycle methods only exist in class based components,
@@ -42,9 +42,9 @@ class IndecisionApp extends React.Component {
     }
   }
   //Fires when a component goes away
-  componentWillUnmount(){
-    console.log('component will unmount');
-  }
+  // componentWillUnmount(){
+  //   console.log('component will unmount');
+  // }
   handleDeleteOptions(){
     this.setState(() => ({ options: []  }));
   }
@@ -93,10 +93,6 @@ class IndecisionApp extends React.Component {
     );
   }
 }
-
-IndecisionApp.defaultProps = {
-  options: []
-};
 
 const Header = (props) => {
   return (

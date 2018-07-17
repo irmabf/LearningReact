@@ -21,7 +21,7 @@ var IndecisionApp = function (_React$Component) {
     _this.handlePick = _this.handlePick.bind(_this);
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_this);
     _this.state = {
-      options: props.options
+      options: []
     };
     return _this;
   }
@@ -63,12 +63,10 @@ var IndecisionApp = function (_React$Component) {
       }
     }
     //Fires when a component goes away
+    // componentWillUnmount(){
+    //   console.log('component will unmount');
+    // }
 
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      console.log('component will unmount');
-    }
   }, {
     key: 'handleDeleteOptions',
     value: function handleDeleteOptions() {
@@ -136,10 +134,6 @@ var IndecisionApp = function (_React$Component) {
 
   return IndecisionApp;
 }(React.Component);
-
-IndecisionApp.defaultProps = {
-  options: []
-};
 
 var Header = function Header(props) {
   return React.createElement(
