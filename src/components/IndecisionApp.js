@@ -5,16 +5,9 @@ import Action from './Action';
 import Options from './Options';
 
 export default class IndecisionApp extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleDeleteOption = this.handleDeleteOption.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-    this.state = {
-      options: []
-    };
-  }
+  state = {
+    options: []
+  };
   //Lifecycle methods only exist in class based components,
   //we CAN'T use them in statless functional components
 
@@ -51,10 +44,10 @@ export default class IndecisionApp extends React.Component {
   // componentWillUnmount(){
   //   console.log('component will unmount');
   // }
-  handleDeleteOptions(){
+  handleDeleteOptions = () => {
     this.setState(() => ({ options: []  }));
   }
-  handleDeleteOption(optionToRemove) {
+  handleDeleteOption = (optionToRemove) => {
     //console.log('delete single', option);
     this.setState( (prevState) => ({
       options: prevState.options.filter( (option)=> {
@@ -63,12 +56,12 @@ export default class IndecisionApp extends React.Component {
       })
     }));
   }
-  handlePick(){
+  handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
     alert(option);
   }
-  handleAddOption(option){
+  handleAddOption = (option) => {
     //this is only going to run if there is an empty string in the input
     if (!option) {
       return 'Enter valid value to add item';
