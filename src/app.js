@@ -9,6 +9,26 @@ class IndecisionApp extends React.Component {
       options: props.options
     };
   }
+  //Lifecycle methods only exist in class based components,
+  //we CAN'T use them in statless functional components
+  componentDidMount(){
+    console.log('Fetching Data');
+  }
+  //ComponentDidUpdate fires after the components updates, meaning it fires:
+  //After the state value changes
+  //or
+  // After the props value changes
+
+  // componentDidUpdate(){
+  //   console.log('component did update');
+  // }
+  componentDidUpdate(prevProps, prevState){
+    console.log('Saving Data');
+  }
+  //Fires when a component goes away
+  componentWillUnmount(){
+    console.log('component will unmount');
+  }
   handleDeleteOptions(){
     this.setState(() => ({ options: []  }));
   }

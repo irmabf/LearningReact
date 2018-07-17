@@ -25,8 +25,37 @@ var IndecisionApp = function (_React$Component) {
     };
     return _this;
   }
+  //Lifecycle methods only exist in class based components,
+  //we CAN'T use them in statless functional components
+
 
   _createClass(IndecisionApp, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log('Fetching Data');
+    }
+    //ComponentDidUpdate fires after the components updates, meaning it fires:
+    //After the state value changes
+    //or
+    // After the props value changes
+
+    // componentDidUpdate(){
+    //   console.log('component did update');
+    // }
+
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      console.log('Saving Data');
+    }
+    //Fires when a component goes away
+
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log('component will unmount');
+    }
+  }, {
     key: 'handleDeleteOptions',
     value: function handleDeleteOptions() {
       this.setState(function () {
