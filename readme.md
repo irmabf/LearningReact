@@ -8,6 +8,12 @@
 
   yarn add live-server babel-cli@6.24.1
 
+# Run Web Pack
+
+  yarn run build
+  or
+  npm run build
+
 # Run Live Server
 
   yarn run serve
