@@ -8,25 +8,15 @@
 
   yarn add live-server babel-cli@6.24.1
 
-# Run WebPack
+# Run WebPack Dev Server
 
-  yarn run build
+  yarn run dev-server
   or
-  npm run build
+  npm run dev-server
 
-# Run Live Server
 
-  yarn run serve
-  or
-  npm run serve
 
-# Run Babel
 
-## Run Babel for the Indecision App
-
-  yarn run build-babel
-  or
-  npm run build-babel
 
 
 
