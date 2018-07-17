@@ -3,11 +3,44 @@ import AddOption from './AddOption';
 import Header from './Header';
 import Action from './Action';
 import Options from './Options';
+import OptionModal from './OptionModal';
 
 export default class IndecisionApp extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   };
+  handleDeleteOptions = () => {
+    this.setState(() => ({ options: []  }));
+  }
+  handleClearSelectedOption = () => {
+    this.setState( () => ({ selectedOption: undefined }));
+  }
+  handleDeleteOption = (optionToRemove) => {
+    //console.log('delete single', option);
+    this.setState( (prevState) => ({
+      options: prevState.options.filter( (option)=> {
+        //Return false if we dont wanna keep the item in the array
+        return optionToRemove !== option;
+      })
+    }));
+  }
+  handlePick = () => {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    this.setState( () => ({
+      selectedOption: option
+    }));
+  }
+  handleAddOption = (option) => {
+    //this is only going to run if there is an empty string in the input
+    if (!option) {
+      return 'Enter valid value to add item';
+    }else if(this.state.options.indexOf(option) > -1){
+      return 'This option already exists';
+    }
+    this.setState( (prevState) => ({  options: prevState.options.concat(option) }));
+  }
   //Lifecycle methods only exist in class based components,
   //we CAN'T use them in statless functional components
 
@@ -40,36 +73,7 @@ export default class IndecisionApp extends React.Component {
       localStorage.setItem('options', json);
     }
   }
-  //Fires when a component goes away
-  // componentWillUnmount(){
-  //   console.log('component will unmount');
-  // }
-  handleDeleteOptions = () => {
-    this.setState(() => ({ options: []  }));
-  }
-  handleDeleteOption = (optionToRemove) => {
-    //console.log('delete single', option);
-    this.setState( (prevState) => ({
-      options: prevState.options.filter( (option)=> {
-        //Return false if we dont wanna keep the item in the array
-        return optionToRemove !== option;
-      })
-    }));
-  }
-  handlePick = () => {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    alert(option);
-  }
-  handleAddOption = (option) => {
-    //this is only going to run if there is an empty string in the input
-    if (!option) {
-      return 'Enter valid value to add item';
-    }else if(this.state.options.indexOf(option) > -1){
-      return 'This option already exists';
-    }
-    this.setState( (prevState) => ({  options: prevState.options.concat(option) }));
-  }
+
   render() {
     //const title = 'Indecision';
     const subtitle = 'Put your life in the hands of a computer';
@@ -87,6 +91,10 @@ export default class IndecisionApp extends React.Component {
       />
       <AddOption
         handleAddOption={ this.handleAddOption }
+       />
+       <OptionModal
+          selectedOption={ this.state.selectedOption }
+          handleClearSelectedOption={ this.handleClearSelectedOption }
        />
     </div>
     );
