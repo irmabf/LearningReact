@@ -1,19 +1,21 @@
 {
-  "name": "indecisionApp",
+  "name": "indecision-app",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Irma Blanco",
   "license": "MIT",
-  "dependencies": {
-    "babel-preset-env": "1.5.2",
-    "babel-preset-react": "6.24.1"
-  },
   "scripts": {
-    "live-server": "live-server public",
-    "app": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "counter": "babel src/playground/counter.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "visible": "babel src/playground/buid-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "es6-classes": "babel src/playground/es6-classes01.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "jsx-indecision": "babel src/playground/jsx-indecision.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    "serve": "live-server public/",
+    "build": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build-counter": "babel src/playground/counter.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build-visible": "babel src/playground/buid-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build-es6-classes": "babel src/playground/es6-classes01.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "build-jsx-indecision": "babel src/playground/jsx-indecision.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  },
+  "dependencies": {
+    "babel-cli": "6.24.1",
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1",
+    "live-server": "^1.2.0"
   }
 }

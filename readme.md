@@ -1,32 +1,45 @@
-# Install Live Server
-  yarn global add live-server
-# Run Live Server
-
-  npm run live-server
-
-# Install Babel CLI
-
-  yarn global add babel-cli@6.24.1
-
-# Install Babel presets for es6 and react
+# Create package.json
 
   yarn init
-  yarn add babel-preset-react@6.24.1 babel-preset-env@1.5.2
+  or
+  npm init
+
+# Install Live Server and Babel dependencies locally
+
+  yarn add live-server babel-cli@6.24.1
+
+# Run Live Server
+
+  yarn run serve
+  or
+  npm run serve
 
 # Run Babel
 
 ## Run Babel for the Indecision App
-  npm run app
+
+  yarn run build
+  or
+  npm run build
 
 ## Run babel for playground files
 
 ### Counter playground file
-  npm run counter
+  yarn run build-counter
+  or
+  npm run build-counter
+
 ### Build it visible playground file
-  npm run visible
+  yarn run build-visible
+  or
+  npm run build-visible
+
 ### Es6-classes01.js playground file
- npm run classes-es6
+ yarn run build-classes-es6
+ npm run build-classes-es6
+
  ### Indecision-App playground file
- npm run jsx-indecision
+ yarn run build-jsx-indecision
+ npm run build-jsx-indecision
 
 
